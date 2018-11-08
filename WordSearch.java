@@ -8,8 +8,8 @@ public class WordSearch{
      */
     public WordSearch(int rows,int cols){
       data = new char [rows][cols];
-      for (int x = 0; x < data.length; x ++){
-        for (int y = 0; y < data[x].length; y ++){
+      for (int x = 0; x < rows; x ++){
+        for (int y = 0; y < cols; y ++){
           data[x][y] = '_';
         }
       }
@@ -29,7 +29,7 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
-      String sad;
+      String sad = "";
       for (int x = 0; x < data.length; x ++){
         for (int y = 0; y < data[x].length; y ++){
           sad = sad + data [x][y] + "";
@@ -52,8 +52,20 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-    }
-
+      if (col + word.length() > data[0].length){
+        return false;
+      }
+      else{
+           for (int i = 0; col < (col + word.length()); col ++){
+             if (data[row][col] != '_' || data[row][col] != word.charAt(i)){
+               return false;
+             }
+             else{
+               data[row][col] = word.charAt(i);
+             }
+             i ++;}}
+           return true;
+         }
    /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from top to bottom, must fit on the WordGrid, and must
      *have a corresponding letter to match any letters that it overlaps.
@@ -66,5 +78,18 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
-    }
-}
+        if (row + word.length() > data.length){
+          return false;
+        }
+        else{
+             for (int i = 0; row < (row + word.length()); row ++){
+               if (data[row][col] != '_' || data[row][col] != word.charAt(i)){
+                 return false;
+               }
+               else{
+                 data[row][col] = word.charAt(i);
+
+               i ++;}}}
+             return true;
+           }
+         }

@@ -49,17 +49,31 @@ public class WordSearch{
      * or there are overlapping letters that do not match, then false is returned
      * and the board is NOT modified.
      */
+     public boolean checkH (String word, int row, int col){
+       boolean safe = true;
+       for (int i = 0; i < word.length(); col ++){
+       if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
+         return false;
+       }
+       else {i ++;}
+     }
+     return safe;}
+
     public boolean addWordHorizontal(String word,int row, int col){
-      if (col + word.length() > data[0].length || row >= data.length){
+      if(row >= data.length || ((col + word.length() - 1) >= data[0].length)){
         return false;
       }
-      else{
-           for (int i = 0; i < word.length(); col ++){
-             if (data[row][col] == '_' || data[row][col] == word.charAt(i)){
+      if (checkH(word, row, col) == false){
+        return false;
+      }
+
+      else { for (int i = 0; i < word.length(); col ++){
                data[row][col] = word.charAt(i);
-               i ++;}
-               else{return false;}}
-          }
+               i ++;
+      }}
+
+
+
          return true;}
    /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from top to bottom, must fit on the WordGrid, and must
@@ -72,16 +86,27 @@ public class WordSearch{
      *or there are overlapping letters that do not match, then false is returned.
      *and the board is NOT modified.
      */
-     public boolean addWordVertical(String word,int row, int col){
-       if (row + word.length()> data[0].length || col >= data[0].length){
+     public boolean checkV (String word, int row, int col){
+       boolean safe = true;
+       for (int i = 0; i < word.length(); row ++){
+       if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
          return false;
        }
-       else{
-            for (int i = 0; i < word.length(); row ++){
-              if (data[row][col] == '_' || data[row][col] == word.charAt(i)){
-                data[row][col] = word.charAt(i);
-                i ++;}
-                else{return false;}}
-           }
-          return true;}
-        }
+       else {i ++;}
+     }
+     return safe;}
+
+    public boolean addWordVertical(String word,int row, int col){
+      if(col >= data[0].length || ((row + word.length() - 1) >= data.length)){
+        return false;
+      }
+      if (checkV (word, row, col) == false){
+        return false;
+      }
+
+      else { for (int i = 0; i < word.length(); row ++){
+               data[row][col] = word.charAt(i);
+               i ++;
+      }}
+      return true;
+    }}

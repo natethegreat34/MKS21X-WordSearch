@@ -109,4 +109,45 @@ public class WordSearch{
                i ++;
       }}
       return true;
-    }}
+    }
+    /**Attempts to add a given word to the specified position of the WordGrid.
+  *The word is added from top left to bottom right, must fit on the WordGrid,
+  *and must have a corresponding letter to match any letters that it overlaps.
+  *
+  *@param word is any text to be added to the word grid.
+  *@param row is the vertical locaiton of where you want the word to start.
+  *@param col is the horizontal location of where you want the word to start.
+  *@return true when the word is added successfully. When the word doesn't fit,
+  *or there are overlapping letters that do not match, then false is returned.
+  */
+  public boolean checkTLBRD(String word,int row, int col){
+    boolean safe = true;
+    for (int i = 0; i < word.length(); i ++){
+    if (data[row][col] != '_' && data[row][col] != word.charAt(i)){
+      return false;
+    }
+    else {
+      row ++;
+      col ++;}
+  }
+  return safe;}
+
+ public boolean addWordDiagonal(String word,int row, int col){
+   if(col >= data[0].length || ((row + word.length() - 1) >= data.length)){
+     return false;
+   }
+   if(row >= data.length || ((col + word.length() - 1) >= data[0].length)){
+     return false;
+   }
+
+   if (checkTLBRD (word, row, col) == false){
+     return false;
+   }
+
+   else { for (int i = 0; i < word.length();i ++){
+            data[row][col] = word.charAt(i);
+            row ++;
+            col ++;
+   }}
+   return true;
+ }}

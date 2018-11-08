@@ -79,5 +79,49 @@ public class WhereIs{
     System.out.println("word search should be the same as before");
     System.out.println(first.toString());
   System.out.println(first.addWordHorizontal("SAY", 2, 2));
-  }
+WordSearch w1 = new WordSearch(6, 6); //tests initialize method
+System.out.println(w1 + "\n"); //should print 6 x 6 grid of _
+System.out.println("should print 6 x 6 grid of _");
+System.out.println(w1.addWordHorizontal("blue", 0, 0)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should print blue in first row
+System.out.println("should print blue in first row");
+System.out.println(w1.addWordHorizontal("chocolate", 1, 1)); //should return false
+System.out.println("should return false");
+System.out.println(w1 + "\n");
+System.out.println(w1.addWordHorizontal("uesy", 0, 2)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should print bluesy in first row
+System.out.println("should print bluesy in first row");
+System.out.println(w1.addWordVertical("ink", 3, 5)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should print ink in the last column
+System.out.println("should print ink in the last column");
+System.out.println(w1.addWordVertical("pen", 0, 3)); //should return false
+System.out.println("should return false");
+System.out.println(w1 + "\n");
+System.out.println(w1.addWordVertical("basket", 0, 0)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should print basket in the first column
+System.out.println("should print basket in the first column");
+System.out.println(w1.addWordVertical("ace", 3, 2)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should print ace in the third column
+System.out.println("should print ace in third column");
+
+System.out.println(w1.addWordDiagonal("basalk", 0, 0)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n");//should print basalk in the diagonal
+System.out.println("should print basalt in the diagonal");
+System.out.println(w1.addWordDiagonal("basalk", 0, 0)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n"); //should remain unchanged
+System.out.println("should remain unchanged");
+System.out.println(w1.addWordDiagonal("AA", 2, 3)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n");
+System.out.println(w1.addWordDiagonal("kie", 3, 0)); //should return true
+System.out.println("should return true");
+System.out.println(w1 + "\n");//should print kie in the diagonal
+}
 }

@@ -1,4 +1,27 @@
+import java.util.Random;
+import java.util.*; //random, scanner, arraylist
+import java.io.*; //file, filenotfoundexception
 public class WordSearch{
+  private char[][]data;
+
+   //the random seed used to produce this WordSearch
+   private int seed;
+
+   //a random Object to unify your random calls
+   private Random randgen;
+
+   //all words from a text file get added to wordsToAdd, indicating that they have not yet been added
+   private ArrayList<String>wordsToAdd;
+
+   //all words that were successfully added get moved into wordsAdded.
+   private ArrayList<String>wordsAdded;
+   public WordSearch( int rows, int cols, String fileName){
+      int ng = new Random ();
+      rows= ng;
+   }
+
+public WordSearch( int rows, int cols, String fileName, int randSeed)
+{;}
     private char[][]data;
 
     /**Initialize the grid to the size specified
@@ -29,11 +52,13 @@ public class WordSearch{
     public String toString(){
       String sad = "";
       for (int x = 0; x < data.length; x ++){
+        sad = sad + '|';
         for (int y = 0; y < data[x].length; y ++){
           sad = sad + data [x][y] + " ";
         }
         sad = sad + "\n";
     }
+    sad = sad + "Words: ";
     return sad;
   }
 

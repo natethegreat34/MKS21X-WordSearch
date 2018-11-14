@@ -11,17 +11,33 @@ public class WordSearch{
    private Random randgen;
 
    //all words from a text file get added to wordsToAdd, indicating that they have not yet been added
-   private ArrayList<String>wordsToAdd;
+   private ArrayLis<String>wordsToAdd;
 
    //all words that were successfully added get moved into wordsAdded.
    private ArrayList<String>wordsAdded;
    public WordSearch(int r, int c, String fileName, int seed, boolean answer){
      randgen = new Random (seed);
-
      clear ();
      wordsToAdd = getWords (fileName);
      addAllWords();
-     fillInRandomLetters();}
+     fillInRandomLetters();
+     try{
+       File f = new File(fileName);//can combine
+       Scanner in = new Scanner(f);//into one line
+
+        while(in.hasNext()){
+          String word = in.next();
+          //do something with word
+          System.out.println(word);
+}
+
+     }catch(FileNotFoundException e){
+       System.out.println("File not found: " + fileName);
+       //e.printStackTrace();
+       System.exit(1);
+     }
+   }
+
 
 
 

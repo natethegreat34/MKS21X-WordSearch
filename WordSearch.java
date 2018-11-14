@@ -11,20 +11,19 @@ public class WordSearch{
    private Random randgen;
 
    //all words from a text file get added to wordsToAdd, indicating that they have not yet been added
-   private ArrayList<String>wordsToAdd;
+   private ArrayList<String>wordsToAdd = new ArrayList <String> ();
 
    //all words that were successfully added get moved into wordsAdded.
-   private ArrayList<String>wordsAdded;
-   public WordSearch(int r, int c, String fileName, int seed, boolean answer) throws FileNotFoundException{
+   private ArrayList<String>wordsAdded = new ArrayList <String> ();
+   public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
      data = new char [r] [c];
      clear ();
      try {
-
-
+       fr (fileName);
+       System.out.println(wordsToAdd);
      }
      catch (FileNotFoundException e){
        System.out.println("File not found.");
-
 
      }
 
@@ -32,7 +31,17 @@ public class WordSearch{
 
 
 
-   private void
+   private void fr (String input) throws FileNotFoundException{
+     File f = new File (input);
+     Scanner k = new Scanner (f);
+     while (k.hasNextLine() ){
+       String a  = k.nextLine();
+       wordsToAdd.add(a);
+          }
+   }
+
+
+
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int x = 0; x < data.length; x ++){

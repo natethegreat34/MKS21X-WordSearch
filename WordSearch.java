@@ -15,24 +15,14 @@ public class WordSearch{
 
    //all words that were successfully added get moved into wordsAdded.
    private ArrayList<String>wordsAdded;
-   public WordSearch( int rows, int cols, String fileName){
-      int ng = new Random ();
-      rows= ng;
-   }
+   public WordSearch(int r, int c, String fileName, int seed, boolean answer){
+     randgen = new Random (seed);
 
-public WordSearch( int rows, int cols, String fileName, int randSeed)
-{;}
-    private char[][]data;
+     clear ();
+     wordsToAdd = getWords (fileName);
+     addAllWords();
+     fillInRandomLetters();}
 
-    /**Initialize the grid to the size specified
-     *and fill all of the positions with '_'
-     *@param row is the starting height of the WordSearch
-     *@param col is the starting width of the WordSearch
-     */
-    public WordSearch(int rows,int cols){
-      data = new char [rows][cols];
-      clear();
-        }
 
 
 
@@ -241,23 +231,13 @@ private void addAllWords() {
     }
 }
 }
+getWords (){;}
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                }
+//declare new file
+//declare new scanner that takes file as an input
+//use scanner methods to add words into the ArrayList
+// Instantiate ArrayList somewhere

@@ -3,6 +3,9 @@ import java.util.*; //random, scanner, arraylist
 import java.io.*; //file, filenotfoundexception
 public class WordSearch{
   private char[][]data;
+  private int rowlength;
+  private int collength;
+
 
    //the random seed used to produce this WordSearch
    private int seed;
@@ -16,6 +19,7 @@ public class WordSearch{
    //all words that were successfully added get moved into wordsAdded.
    private ArrayList<String>wordsAdded = new ArrayList <String> ();
    public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
+     randgen = new Random (seed);
      data = new char [r] [c];
      clear ();
      try {
@@ -26,10 +30,27 @@ public class WordSearch{
        System.out.println("File not found.");
 
      }
-
+     rowlength = r;
+     collength = c;
    }
 
+   public WordSearch(int r, int c, String fileName, boolean answer) {
+     Random sg = new Random ();
+     seed = sg.nextInt();
+     randgen = new Random (seed);
+     data = new char [r] [c];
+     clear ();
+     try {
+       fr (fileName);
+       System.out.println(wordsToAdd);
+     }
+     catch (FileNotFoundException e){
+       System.out.println("File not found.");
 
+     }
+     rowlength = r;
+     collength = c;
+   }
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);

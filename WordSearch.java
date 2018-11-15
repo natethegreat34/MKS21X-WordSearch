@@ -244,30 +244,29 @@ if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
                   }
 
 //Was helped by Moududur Rahman
-// private void addAllWords() {
-//   int xc;
-//   int yc;
-//   int rv;
-//   int cv;
-//   int add = 0;
-//     for (int i = 0; i < wordsToAdd.size(); i++){
-//       int c = 100;
-//       boolean happy = false;
-//       String list = wordsToAdd.get(i);
-//       while (happy == false && c > 0){
-//
-//       xc = Math.abs(randgen.nextInt() % rows);
-//       yc = Math.abs(randgen.nextInt() % cols);
-//       rv = (randgen.nextInt() % 2);
-//       cv = (randgen.nextInt() % 2);
-//       if(happy = addWord( yc, xc, list, rv, cv)){
-//         add++;
-//       }
-//       c --;
-//       System.out.println(add);
-//     }
-// }
-// }
+private void addAllWords() {
+  int xc;
+  int yc;
+  int rv;
+  int cv;
+  int add = 0;
+    for (int i = 0; i < wordsToAdd.size(); i++){
+      int tries = 100;
+      boolean happy = false;
+      String list = wordsToAdd.get(i);
+      while (happy == false && tries > 0){
+        xc = Math.abs(randgen.nextInt() % collength + 1);
+        yc = Math.abs(randgen.nextInt() % rowlength + 1);
+        rv = (randgen.nextInt() % 2);
+        cv = (randgen.nextInt() % 2);
+        if (!addWord(rowlength, collength, wordsToAdd.get(i), rv, cv)){
+        tries --;
+      }
+      else{ addWord(rowlength, collength, wordsToAdd.get(i), rv, cv);}
+      System.out.println(add);
+    }
+}
+}
 }
 
 

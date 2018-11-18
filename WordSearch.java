@@ -44,8 +44,9 @@ public class WordSearch{
       }
       catch (NumberFormatException e){
         System.out.println(error2);}
-        if (alength == 3){
-        WordSearch pal = new WordSearch (ro, co, file);
+        if (alength == 3 ){
+          k = false;
+        WordSearch pal = new WordSearch (ro, co, file, k);
         System.out.println(pal);}
 
       if (alength == 4){
@@ -54,7 +55,8 @@ public class WordSearch{
         }
         catch (NumberFormatException e){
           System.out.println(error2);}
-          WordSearch pal = new WordSearch (ro, co, file, sprout);
+          k = false;
+          WordSearch pal = new WordSearch (ro, co, file, sprout, k);
           System.out.println(pal);}
 
 
@@ -68,23 +70,28 @@ public class WordSearch{
           return "Last word needs to be key if you want the answer \n" + error2;
         }}}
 
-   public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
-     randgen = new Random (seed);
-     data = new char [r] [c];
-     clear ();
-
-
-
-     }
-
-   public WordSearch(int r, int c, String fileName, boolean answer) {
-     Random sg = new Random ();
-     seed = sg.nextInt();
-     randgen = new Random (seed);
-     data = new char [r] [c];
-     clear ();
-
-  }
+  //  public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
+  //    randgen = new Random (seed);
+  //    data = new char [r] [c];
+  //    clear ();
+  //    if (!answer){
+  //      nokey();}
+  //
+  //
+  //
+  //
+  //    }
+  //
+  //  public WordSearch(int r, int c, String fileName, boolena answer) {
+  //    Random sg = new Random ();
+  //    seed = sg.nextInt();
+  //    randgen = new Random (seed);
+  //    data = new char [r] [c];
+  //    clear ();
+  //    if (!answer){
+  //      nokey();}
+  //
+  // }
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);

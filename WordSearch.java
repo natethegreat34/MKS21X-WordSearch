@@ -28,19 +28,14 @@ public class WordSearch{
      boolean k = false;
      String error1 = "File not found";
      String error2 = "Might be missing an argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n WordSearch 40 40 123 word.txt or \n WordSearch 40 40 123 word.txt key";
-     try {
-       fr (fileName);
-       System.out.println(wordsToAdd);
-     }
-     catch (FileNotFoundException e){
-       System.out.println(error1);}
 
-      if (alength < 3){return error2;}
+
+      if (alength < 3){System.out.println(error2);}
 
       try {
-        ro = args[0];
-        co = args [1];
-        file = args [2];
+        ro = Integer.parseInt(args[0]);
+        co = Integer.parseInt(args [1]);
+        file = args[2];
       }
       catch (NumberFormatException e){
         System.out.println(error2);}
@@ -51,7 +46,7 @@ public class WordSearch{
 
       if (alength == 4){
         try {
-          sprout = args[3];
+          sprout = Integer.parseInt(args[3]);
         }
         catch (NumberFormatException e){
           System.out.println(error2);}
@@ -67,31 +62,38 @@ public class WordSearch{
           System.out.println(pal);
         }
         else{
-          return "Last word needs to be key if you want the answer \n" + error2;
+          System.out.println( "Last word needs to be key if you want the answer ");
         }}}
 
-  //  public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
-  //    randgen = new Random (seed);
-  //    data = new char [r] [c];
-  //    clear ();
-  //    if (!answer){
-  //      nokey();}
-  //
-  //
-  //
-  //
-  //    }
-  //
-  //  public WordSearch(int r, int c, String fileName, boolena answer) {
-  //    Random sg = new Random ();
-  //    seed = sg.nextInt();
-  //    randgen = new Random (seed);
-  //    data = new char [r] [c];
-  //    clear ();
-  //    if (!answer){
-  //      nokey();}
-  //
-  // }
+   public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
+     try {
+       fr (fileName);
+       System.out.println(wordsToAdd);
+     }
+     catch (FileNotFoundException e){
+       System.out.println("File not found.");}
+     randgen = new Random (seed);
+     data = new char [r] [c];
+     clear ();
+     if (!answer){
+       nokey();}}
+
+   public WordSearch(int r, int c, String fileName, boolean answer) {
+     try {
+       fr (fileName);
+       System.out.println(wordsToAdd);
+     }
+     catch (FileNotFoundException e){
+       System.out.println("File not found.");}
+     Random sg = new Random ();
+     seed = sg.nextInt();
+     randgen = new Random (seed);
+     data = new char [r] [c];
+     clear ();
+     if (!answer){
+       nokey();}
+
+  }
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);
@@ -175,14 +177,14 @@ private void addAllWords() {
       boolean happy = false;
       String list = wordsToAdd.get(i);
       while (happy == false && tries > 0){
-        xc = Math.abs(randgen.nextInt() % c + 1);
-        yc = Math.abs(randgen.nextInt() % r+ 1);
+        xc = Math.abs(randgen.nextInt() % data.length);
+        yc = Math.abs(randgen.nextInt() % data[0].length);
         rv = (randgen.nextInt() % 2);
         cv = (randgen.nextInt() % 2);
-        if (!addWord(wordsToAdd.get(i), r, c, rv, cv)){
+        if (!addWord(wordsToAdd.get(i), xc, yc, rv, cv)){
         tries --;
       }
-      else{ addWord(wordsToAdd.get(i),r, c, rv, cv);}
+      else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);}
       System.out.println(add);
     }
 }
@@ -196,10 +198,10 @@ private void nokey(){
 }
 }
 
-private String fill () {
+private char fill () {
 String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 Random z = new Random ();
-return abc.substring(z%26, z%26 - 1);
+return abc.charAt(z.nextInt() % 26);
 }
 
 }

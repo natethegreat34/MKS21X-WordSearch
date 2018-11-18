@@ -68,34 +68,23 @@ public class WordSearch{
           return "Last word needs to be key if you want the answer \n" + error2;
         }}}
 
-   // public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
-   //   randgen = new Random (seed);
-   //   data = new char [r] [c];
-   //   clear ();
-   //
-   //
-   //   }
-   //   rowlength = r;
-   //   collength = c;
-   // }
-   //
-   // public WordSearch(int r, int c, String fileName, boolean answer) {
-   //   Random sg = new Random ();
-   //   seed = sg.nextInt();
-   //   randgen = new Random (seed);
-   //   data = new char [r] [c];
-   //   clear ();
-   //   try {
-   //     fr (fileName);
-   //     System.out.println(wordsToAdd);
-   //   }
-   //   catch (FileNotFoundException e){
-   //     System.out.println("File not found.");
-   //
-   //   }
-   //   rowlength = r;
-   //   collength = c;
-   // }
+   public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
+     randgen = new Random (seed);
+     data = new char [r] [c];
+     clear ();
+
+
+
+     }
+
+   public WordSearch(int r, int c, String fileName, boolean answer) {
+     Random sg = new Random ();
+     seed = sg.nextInt();
+     randgen = new Random (seed);
+     data = new char [r] [c];
+     clear ();
+
+  }
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);
@@ -179,18 +168,33 @@ private void addAllWords() {
       boolean happy = false;
       String list = wordsToAdd.get(i);
       while (happy == false && tries > 0){
-        xc = Math.abs(randgen.nextInt() % collength + 1);
-        yc = Math.abs(randgen.nextInt() % rowlength + 1);
+        xc = Math.abs(randgen.nextInt() % c + 1);
+        yc = Math.abs(randgen.nextInt() % r+ 1);
         rv = (randgen.nextInt() % 2);
         cv = (randgen.nextInt() % 2);
-        if (!addWord(wordsToAdd.get(i), rowlength, collength, rv, cv)){
+        if (!addWord(wordsToAdd.get(i), r, c, rv, cv)){
         tries --;
       }
-      else{ addWord(wordsToAdd.get(i),rowlength, collength, rv, cv);}
+      else{ addWord(wordsToAdd.get(i),r, c, rv, cv);}
       System.out.println(add);
     }
 }
 }
+
+private void nokey(){
+  for (int x = 0; x < data.length; x ++) {
+  for (int y = 0; y < data[0].length; y ++) {
+    if (data[x][y] == ' ') data[x][y] = fill();
+  }
+}
+}
+
+private String fill () {
+String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Random z = new Random ();
+return abc.substring(z%26, z%26 - 1);
+}
+
 }
 
 

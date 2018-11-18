@@ -18,6 +18,12 @@ public class WordSearch{
 
    //all words that were successfully added get moved into wordsAdded.
    private ArrayList<String>wordsAdded = new ArrayList <String> ();
+
+   // public class Driver {
+   //
+   //   public static void main(String[] args) {
+
+
    public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
      randgen = new Random (seed);
      data = new char [r] [c];
@@ -168,80 +174,15 @@ if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
      return true;}
 
   public boolean Safe ( int r, int c, String word, int rowIncrement, int colIncrement){
-    if (rowIncrement == 0 && colIncrement == -1){
-          for (int i = 0; i < word.length(); c --){
-            if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-              return false;
-            }
-            else {i ++;}
-          }}
-    if (rowIncrement == 0 && colIncrement == 0){
-        return false;
-        }
-    if (rowIncrement == 0 && colIncrement == 1){
-          for (int i = 0; i < word.length(); c ++){
-            if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-              return false;
-            }
-            else {i ++;}
-          }}
-    if (rowIncrement == 1 && colIncrement == -1){
-              for (int i = 0; i < word.length(); c --){
-                if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                  return false;
-                }
-                else {
-                  i ++;
-                  r ++;}
-              }}
-    if (rowIncrement == 1 && colIncrement == 0){
-                      for (int i = 0; i < word.length();){
-                        if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                          return false;
-                        }
-                        else {
-                          i ++;
-                          r ++;}
-                      }}
-    if (rowIncrement == 1 && colIncrement == 1){
-                      for (int i = 0; i < word.length(); c ++){
-                        if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                          return false;
-                        }
-                        else {
-                              i ++;
-                              r ++;}
-                        }}
-
-    if (rowIncrement == -1 && colIncrement == -1){
-                    for (int i = 0; i < word.length(); c --){
-                      if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                        return false;
-                        }
-                        else {
-                              i ++;
-                              r --;}
-                            }}
-    if (rowIncrement == -1 && colIncrement == 0){
-                    for (int i = 0; i < word.length();){
-                      if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                        return false;
-                        }
-                        else {
-                              i ++;
-                              r --;}
-                            }}
-      if (rowIncrement == -1 && colIncrement == 1){
-                    for (int i = 0; i < word.length(); c ++){
-                      if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
-                        return false;
-                        }
-                        else {
-                              i ++;
-                              r --;}
-                            }}
-      return true;
-                  }
+    if (rowIncrement == 0 && colIncrement == 0){return false;}
+    for (int i = 0; i < word.length(); i ++){
+      if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
+          return false;}
+        if (r < 0 || c < 0){
+          return false;}
+        r = r + rowIncrement;
+        c = c + colIncrement;
+      }}
 
 //Was helped by Moududur Rahman
 private void addAllWords() {

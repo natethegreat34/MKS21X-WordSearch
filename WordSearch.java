@@ -144,7 +144,7 @@ public class WordSearch{
      * or there are overlapping letters that do not match, then false is returned
      * and the board is NOT modified.
      */
-private boolean addWord( String word, int r, int c, int rowIncrement, int colIncrement){
+public boolean addWord( String word, int r, int c, int rowIncrement, int colIncrement){
 if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
   for (int i = 0; i < word.length(); i++){
     data[r][c] = word.charAt(i);
@@ -201,7 +201,7 @@ private void nokey(){
 private char fill () {
 String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 Random z = new Random ();
-return abc.charAt(z.nextInt() % 26);
+return abc.charAt(Math.abs(z.nextInt() % 26));
 }
 
 }

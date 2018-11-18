@@ -109,69 +109,11 @@ public class WordSearch{
      */
 private boolean addWord( int r, int c, String word, int rowIncrement, int colIncrement){
 if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
-  if (rowIncrement == 1){
-        if (colIncrement == 1){
-           for (int i = 0; i < word.length(); c ++){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r ++;
-             }
-           }
-        if (colIncrement == 0){
-           for (int i = 0; i < word.length();){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r ++;
-             }
-         }
-         if (colIncrement == -1){
-           for (int i = 0; i < word.length(); c --){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r ++;
-             }
-         }
-       }
-
-  if (rowIncrement == 0){
-         if (colIncrement == 1){
-           for (int i = 0; i < word.length(); c ++){
-               data[r][c] = word.charAt(i);
-               i ++;
-             }
-           }
-         if (colIncrement == -1){
-           for (int i = 0; i < word.length(); c --){
-               data[r][c] = word.charAt(i);
-               i ++;
-             }
-         }
-       }
-
-  if (rowIncrement == -1){
-         if (colIncrement == 1){
-           for (int i = 0; i < word.length(); c ++){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r --;
-             }
-           }
-         if (colIncrement == 0){
-           for (int i = 0; i < word.length();){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r --;
-             }
-         }
-         if (colIncrement == -1){
-           for (int i = 0; i < word.length(); c --){
-               data[r][c] = word.charAt(i);
-               i ++;
-               r --;
-             }
-         }
-       }
-     return true;}
+  for (int i = 0; i < word.length(); i++){
+    data[r][c] = word.charAt(i);
+    r = r + rowIncrement;
+    c = c + colIncrement;}
+    return true;}
 
   public boolean Safe ( int r, int c, String word, int rowIncrement, int colIncrement){
     if (rowIncrement == 0 && colIncrement == 0){return false;}

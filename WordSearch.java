@@ -44,7 +44,9 @@ public class WordSearch{
       }
       catch (NumberFormatException e){
         System.out.println(error2);}
+        if (alength == 3){
         WordSearch pal = new WordSearch (ro, co, file);
+        System.out.println(pal);}
 
       if (alength == 4){
         try {
@@ -53,12 +55,14 @@ public class WordSearch{
         catch (NumberFormatException e){
           System.out.println(error2);}
           WordSearch pal = new WordSearch (ro, co, file, sprout);
+          System.out.println(pal);}
 
-      }
+
       if (alength == 5){
         if (args[4].equals("key")){
           k = true;
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
+          System.out.println(pal);
         }
         else{
           return "Last word needs to be key if you want the answer \n" + error2;

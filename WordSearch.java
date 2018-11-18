@@ -107,7 +107,7 @@ public class WordSearch{
      * or there are overlapping letters that do not match, then false is returned
      * and the board is NOT modified.
      */
-private boolean addWord( int r, int c, String word, int rowIncrement, int colIncrement){
+private boolean addWord( String word, int r, int c, int rowIncrement, int colIncrement){
 if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
   for (int i = 0; i < word.length(); i++){
     data[r][c] = word.charAt(i);
@@ -124,7 +124,7 @@ if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
           return false;}
         r = r + rowIncrement;
         c = c + colIncrement;
-      }}
+      } return true;}
 
 //Was helped by Moududur Rahman but that happened before I knew about the academic dishonesty policy for this class.
 //I tried writing my own, but everytime it is just another version of this. I undertood the code so my brain can't think of any other way.
@@ -144,10 +144,10 @@ private void addAllWords() {
         yc = Math.abs(randgen.nextInt() % rowlength + 1);
         rv = (randgen.nextInt() % 2);
         cv = (randgen.nextInt() % 2);
-        if (!addWord(rowlength, collength, wordsToAdd.get(i), rv, cv)){
+        if (!addWord(wordsToAdd.get(i), rowlength, collength, rv, cv)){
         tries --;
       }
-      else{ addWord(rowlength, collength, wordsToAdd.get(i), rv, cv);}
+      else{ addWord(wordsToAdd.get(i),rowlength, collength, rv, cv);}
       System.out.println(add);
     }
 }

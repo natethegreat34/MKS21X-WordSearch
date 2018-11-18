@@ -19,44 +19,79 @@ public class WordSearch{
    //all words that were successfully added get moved into wordsAdded.
    private ArrayList<String>wordsAdded = new ArrayList <String> ();
 
-   // public class Driver {
+   public static void main(String[] args) {
+     int alength = args.length;
+     int ro = 0;
+     int co = 0;
+     String file = "";
+     int sprout = 0;
+     boolean k = false;
+     String error1 = "File not found";
+     String error2 = "Might be missing an argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n WordSearch 40 40 123 word.txt or \n WordSearch 40 40 123 word.txt key";
+     try {
+       fr (fileName);
+       System.out.println(wordsToAdd);
+     }
+     catch (FileNotFoundException e){
+       System.out.println(error1);}
+
+      if (alength < 3){return error2;}
+
+      try {
+        ro = args[0];
+        co = args [1];
+        file = args [2];
+      }
+      catch (NumberFormatException e){
+        System.out.println(error2);}
+        WordSearch pal = new WordSearch (ro, co, file);
+
+      if (alength == 4){
+        try {
+          sprout = args[3];
+        }
+        catch (NumberFormatException e){
+          System.out.println(error2);}
+          WordSearch pal = new WordSearch (ro, co, file, sprout);
+
+      }
+      if (alength == 5){
+        if (args[4].equals("key")){
+          k = true;
+          WordSearch pal = new WordSearch (ro, co, file, sprout, k);
+        }
+        else{
+          return "Last word needs to be key if you want the answer \n" + error2;
+        }}}
+
+   // public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
+   //   randgen = new Random (seed);
+   //   data = new char [r] [c];
+   //   clear ();
    //
-   //   public static void main(String[] args) {
-
-
-   public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
-     randgen = new Random (seed);
-     data = new char [r] [c];
-     clear ();
-     try {
-       fr (fileName);
-       System.out.println(wordsToAdd);
-     }
-     catch (FileNotFoundException e){
-       System.out.println("File not found.");
-
-     }
-     rowlength = r;
-     collength = c;
-   }
-
-   public WordSearch(int r, int c, String fileName, boolean answer) {
-     Random sg = new Random ();
-     seed = sg.nextInt();
-     randgen = new Random (seed);
-     data = new char [r] [c];
-     clear ();
-     try {
-       fr (fileName);
-       System.out.println(wordsToAdd);
-     }
-     catch (FileNotFoundException e){
-       System.out.println("File not found.");
-
-     }
-     rowlength = r;
-     collength = c;
-   }
+   //
+   //   }
+   //   rowlength = r;
+   //   collength = c;
+   // }
+   //
+   // public WordSearch(int r, int c, String fileName, boolean answer) {
+   //   Random sg = new Random ();
+   //   seed = sg.nextInt();
+   //   randgen = new Random (seed);
+   //   data = new char [r] [c];
+   //   clear ();
+   //   try {
+   //     fr (fileName);
+   //     System.out.println(wordsToAdd);
+   //   }
+   //   catch (FileNotFoundException e){
+   //     System.out.println("File not found.");
+   //
+   //   }
+   //   rowlength = r;
+   //   collength = c;
+   // }
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);

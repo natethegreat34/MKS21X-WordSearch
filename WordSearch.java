@@ -197,7 +197,7 @@ private boolean addAllWords() {
 private void nokey(){
   for (int x = 0; x < data.length; x ++) {
   for (int y = 0; y < data[0].length; y ++) {
-    if (data[x][y] == ' ') data[x][y] = fill();
+    if (data[x][y] ==  '_') data[x][y] = fill();
   }
 }
 }

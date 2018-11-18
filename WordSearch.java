@@ -1,12 +1,9 @@
 import java.util.Random;
 import java.util.*; //random, scanner, arraylist
 import java.io.*; //file, filenotfoundexception
+
 public class WordSearch{
   private char[][]data;
-  private int rowlength;
-  private int collength;
-
-
    //the random seed used to produce this WordSearch
    private int seed;
 
@@ -75,6 +72,7 @@ public class WordSearch{
      randgen = new Random (seed);
      data = new char [r] [c];
      clear ();
+     addAllWords();
      if (!answer){
        nokey();}}
 
@@ -90,6 +88,7 @@ public class WordSearch{
      randgen = new Random (seed);
      data = new char [r] [c];
      clear ();
+     addAllWords();
      if (!answer){
        nokey();}
 
@@ -145,49 +144,46 @@ public class WordSearch{
      * and the board is NOT modified.
      */
 public boolean addWord( String word, int r, int c, int rowIncrement, int colIncrement){
-if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
-  for (int i = 0; i < word.length(); i++){
-    data[r][c] = word.charAt(i);
-    r = r + rowIncrement;
-    c = c + colIncrement;}
-    return true;}
+int tv = r;
+int tu = c;
 
-  public boolean Safe ( int r, int c, String word, int rowIncrement, int colIncrement){
-    if (rowIncrement == 0 && colIncrement == 0){return false;}
+  if (rowIncrement == 0 && colIncrement == 0){return false;}
     for (int i = 0; i < word.length(); i ++){
+      if (r < 0 || r >= data.length || c < 0 || c >= data [0].length){
+        return false;
+      }
       if (data[r][c] != '_' && data[r][c] != word.charAt(i)){
           return false;}
-        if (r < 0 || c < 0){
-          return false;}
-        r = r + rowIncrement;
-        c = c + colIncrement;
-      } return true;}
+          r = r + rowIncrement;
+          c = c + colIncrement;
+        }
+
+    for (int i = 0; i < word.length(); i++){
+      data[tv][tu] = word.charAt(i);
+      tv = tv + rowIncrement;
+      tu = tu + colIncrement;}
+    return true;}
 
 //Was helped by Moududur Rahman but that happened before I knew about the academic dishonesty policy for this class.
 //I tried writing my own, but everytime it is just another version of this. I undertood the code so my brain can't think of any other way.
 // I did a few changes but they were minor...so I hope this is okay.
-private void addAllWords() {
-  int xc;
-  int yc;
-  int rv;
-  int cv;
-  int add = 0;
-    for (int i = 0; i < wordsToAdd.size(); i++){
-      int tries = 100;
-      boolean happy = false;
-      String list = wordsToAdd.get(i);
-      while (happy == false && tries > 0){
-        xc = Math.abs(randgen.nextInt() % data.length);
-        yc = Math.abs(randgen.nextInt() % data[0].length);
-        rv = (randgen.nextInt() % 2);
-        cv = (randgen.nextInt() % 2);
-        if (!addWord(wordsToAdd.get(i), xc, yc, rv, cv)){
-        tries --;
+private boolean addAllWords() {
+  while (wordsToAdd.size() > 0) {
+    int idx = Math.abs(randgen.nextInt() % wordsToAdd.size());
+    boolean finished = false;
+    for (int x = 0; x < 500 && ! finished; x ++) {
+      int rows = Math.abs(randgen.nextInt() % data.length);
+      int cols = Math.abs(randgen.nextInt() % data[0].length);
+      int rowIncrement = randgen.nextInt() % 2;
+      int colIncrement = randgen.nextInt() % 2;
+      if (addWord(wordsToAdd.get(idx), rows, cols, rowIncrement, colIncrement)) {
+        finished = true;
+        wordsAdded.add(wordsToAdd.get(idx));
       }
-      else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);}
-      System.out.println(add);
     }
-}
+    wordsToAdd.remove(idx);
+  }
+  return true;
 }
 
 private void nokey(){

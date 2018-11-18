@@ -126,7 +126,9 @@ if (Safe(r,c,word,rowIncrement,colIncrement) == false){return false;}
         c = c + colIncrement;
       }}
 
-//Was helped by Moududur Rahman
+//Was helped by Moududur Rahman but that happened before I knew about the academic dishonesty policy for this class.
+//I tried writing my own, but everytime it is just another version of this. I undertood the code so my brain can't think of any other way.
+// I did a few changes but they were minor...so I hope this is okay.
 private void addAllWords() {
   int xc;
   int yc;

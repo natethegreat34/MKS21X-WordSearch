@@ -37,8 +37,8 @@ public class WordSearch{
       catch (NumberFormatException e){
         System.out.println(error2);}
         if (alength == 3 ){
-          k = false;
-        WordSearch pal = new WordSearch (ro, co, file, k);
+
+        WordSearch pal = new WordSearch (ro, co, file);
         System.out.println(pal);}
 
       if (alength == 4){
@@ -58,9 +58,15 @@ public class WordSearch{
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
           System.out.println(pal);
         }
+
         else{
-          System.out.println( "Last word needs to be key if you want the answer ");
-        }}}
+          k = false;
+          WordSearch pal = new WordSearch (ro, co, file, sprout, k);
+          System.out.println(pal);
+        }}
+      if (alength > 5){
+        System.out.println(error2);
+      }}
 
    public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
      try {
@@ -76,7 +82,7 @@ public class WordSearch{
      if (!answer){
        nokey();}}
 
-   public WordSearch(int r, int c, String fileName, boolean answer) {
+   public WordSearch(int r, int c, String fileName) {
      try {
        fr (fileName);
        System.out.println(wordsToAdd);
@@ -89,9 +95,7 @@ public class WordSearch{
      data = new char [r] [c];
      clear ();
      addAllWords();
-     if (!answer){
-       nokey();}
-
+     nokey();
   }
 
    private void fr (String input) throws FileNotFoundException{
@@ -122,8 +126,12 @@ public class WordSearch{
       String sad = "";
       for (int x = 0; x < data.length; x ++){
         sad = sad + '|';
-        for (int y = 0; y < data[x].length; y ++){
+        for (int y = 0; y < data[x].length;){
           sad = sad + data [x][y] + " ";
+          y ++;
+          if (y == data[x].length){
+            sad = sad + '|';
+          }
         }
         sad = sad + "\n";
     }

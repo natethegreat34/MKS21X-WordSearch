@@ -28,11 +28,9 @@ public class WordSearch{
      String error3 = "Seed is too big or too small or completely wrong. Has to be between an integer 0 and 10000 inclusive.";
      String error4 = "You can't ask for the answer key without giving a seed.";
      String error5 = "Row and column inputs can't be negative.";
-     boolean dongoofed = false;
-      if (alength < 3){System.out.println(error2);
-      dongoofed = true;}
-else{
 
+      if (alength < 3){System.out.println(error2);
+      System.exit(1);}
       try {
         ro = Integer.parseInt(args[0]);
         co = Integer.parseInt(args [1]);
@@ -40,18 +38,16 @@ else{
       }
       catch (NumberFormatException e){
         System.out.println(error2);
-      dongoofed = true;}}
-      if (!dongoofed){
+      System.exit(1);}
         k = false;
       if (Integer.parseInt(args[0])< 0 || Integer.parseInt(args[1]) < 0){
         System.out.println(error5);
-        dongoofed = true;
-      }}
-  if (!dongoofed){
+        System.exit(1);
+      }
         if (alength == 3 ){
           k = false;
         WordSearch pal = new WordSearch (ro, co, file, k);
-        System.out.println(pal);}}
+        System.out.println(pal);}
 
       if (alength == 4){
         try {
@@ -60,15 +56,15 @@ else{
         catch (NumberFormatException e){
           System.out.println(error4);
           System.out.println(error2);
-        dongoofed = true;}
-            if (!dongoofed){
+        System.exit(1);}
+
               k = false;
               if (Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3]) > 10000){System.out.println(error3);
-              dongoofed = true;}
+              System.exit(1);}
               if (!dongoofed){
                 k = false;
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
-          System.out.println(pal);}}}
+          System.out.println(pal);}}
 
 
       if (alength == 5){
@@ -78,16 +74,14 @@ else{
         catch (NumberFormatException e){
           System.out.println(error4);
           System.out.println(error2);
-        dongoofed = true;}
+        System.exit(1);}
         if (args[4].equals("key")){
-            if (!dongoofed){
               k = true;
               if ( Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3])> 10000){System.out.println(error3);
-              dongoofed = true;}
-              if (!dongoofed){
+              System.exit(1);}
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
           System.out.println(pal);
-        }}}
+        }
 
         else{
           k = false;
@@ -96,7 +90,7 @@ else{
         }}
       if (alength > 5){
         System.out.println(error2);
-        dongoofed = true;
+        System.exit(1);
       }}
 
    public WordSearch(int r, int c, String fileName, int seed, boolean answer) {

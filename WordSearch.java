@@ -41,10 +41,12 @@ else{
       catch (NumberFormatException e){
         System.out.println(error2);
       dongoofed = true;}}
+      if (!dongoofed){
+        k = false;
       if (Integer.parseInt(args[0])< 0 || Integer.parseInt(args[1]) < 0){
         System.out.println(error5);
         dongoofed = true;
-      }
+      }}
   if (!dongoofed){
         if (alength == 3 ){
           k = false;

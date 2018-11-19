@@ -40,8 +40,8 @@ else{
       dongoofed = true;}}
   if (!dongoofed){
         if (alength == 3 ){
-
-        WordSearch pal = new WordSearch (ro, co, file);
+          k = false;
+        WordSearch pal = new WordSearch (ro, co, file, k);
         System.out.println(pal);}}
 
       if (alength == 4){
@@ -49,6 +49,7 @@ else{
           sprout = Integer.parseInt(args[3]);
         }
         catch (NumberFormatException e){
+          System.out.println(error2);
           System.out.println(error3);
         dongoofed = true;}
           k = false;
@@ -60,6 +61,13 @@ else{
 
 
       if (alength == 5){
+        try {
+          sprout = Integer.parseInt(args[3]);
+        }
+        catch (NumberFormatException e){
+          System.out.println(error2);
+          System.out.println(error3);
+        dongoofed = true;}
         if (args[4].equals("key")){
           k = true;
           if ( Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3])> 10000){System.out.println(error3);
@@ -94,7 +102,7 @@ else{
      if (!answer){
        nokey();}}
 
-   public WordSearch(int r, int c, String fileName) {
+   public WordSearch(int r, int c, String fileName, boolean answer) {
      try {
        fr (fileName);
      }
@@ -107,8 +115,9 @@ else{
      data = new char [r] [c];
      clear ();
      addAllWords();
-     nokey();
-  }
+     if (!answer){
+       nokey();}}
+
 
    private void fr (String input) throws FileNotFoundException{
      File f = new File (input);
@@ -205,7 +214,8 @@ private void addAllWords() {
          if (!addWord(wordsToAdd.get(i), xc, yc, rv, cv)){
          tries --;
        }
-       else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);}
+       else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);
+        happy = true;}
      }
  }
  }

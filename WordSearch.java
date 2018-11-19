@@ -82,7 +82,6 @@ else{
    public WordSearch(int r, int c, String fileName, int seed, boolean answer) {
      try {
        fr (fileName);
-       System.out.println(wordsToAdd);
      }
      catch (FileNotFoundException e){
        System.out.println("File not found.");
@@ -98,7 +97,6 @@ else{
    public WordSearch(int r, int c, String fileName) {
      try {
        fr (fileName);
-       System.out.println(wordsToAdd);
      }
      catch (FileNotFoundException e){
        System.out.println("File not found.");
@@ -149,7 +147,7 @@ else{
         }
         sad = sad + "\n";
     }
-    sad = sad + "Words: (Seed:" + seeder + ")";
+    sad = sad + "Words: (Seed:" + seeder + ")" + wordsToAdd;
     return sad;
   }
 

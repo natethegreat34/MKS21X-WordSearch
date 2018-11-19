@@ -27,10 +27,12 @@ public class WordSearch{
      String error2 = "Might be missing or have an additional argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n java WordSearch 40 40 word.txt 123 \n or \n java WordSearch 40 40 word.txt 123 key";
      String error3 = "Seed is too big or too small or completely wrong. Has to be between an integer 0 and 10000 inclusive.";
      String error4 = "You can't ask for the answer key without giving a seed.";
+     String error5 = "Row and column inputs can't be negative.";
      boolean dongoofed = false;
       if (alength < 3){System.out.println(error2);
       dongoofed = true;}
 else{
+
       try {
         ro = Integer.parseInt(args[0]);
         co = Integer.parseInt(args [1]);
@@ -39,6 +41,10 @@ else{
       catch (NumberFormatException e){
         System.out.println(error2);
       dongoofed = true;}}
+      if (Integer.parseInt(args[0])< 0 || Integer.parseInt(args[1]) < 0){
+        System.out.println(error5);
+        dongoofed = true;
+      }
   if (!dongoofed){
         if (alength == 3 ){
           k = false;

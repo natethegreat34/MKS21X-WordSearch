@@ -24,7 +24,7 @@ public class WordSearch{
      int sprout = 0;
      boolean k = false;
      String error1 = "File not found";
-     String error2 = "Might be missing or have an additional an argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n WordSearch 40 40 123 word.txt \n or \n WordSearch 40 40 123 word.txt key";
+     String error2 = "Might be missing or have an additional argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n WordSearch 40 40 123 word.txt \n or \n WordSearch 40 40 123 word.txt key";
      String error3 = "Seed is too big. Has to be between 0 and 10000 inclusive.";
      boolean dongoofed = false;
       if (alength < 3){System.out.println(error2);

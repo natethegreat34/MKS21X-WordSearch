@@ -61,10 +61,9 @@ public class WordSearch{
               k = false;
               if (Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3]) > 10000){System.out.println(error3);
               System.exit(1);}
-              if (!dongoofed){
                 k = false;
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
-          System.out.println(pal);}}
+          System.out.println(pal);}
 
 
       if (alength == 5){
@@ -162,7 +161,7 @@ public class WordSearch{
         }
         sad = sad + "\n";
     }
-    sad = sad + "Words: (Seed:" + seeder + ")" + wordsToAdd;
+    sad = sad + "Words: (Seed:" + seeder + ")" + wordsAdded;
     return sad;
   }
 
@@ -221,6 +220,7 @@ private void addAllWords() {
          tries --;
        }
        else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);
+         wordsAdded.add(wordsToAdd.get(i));
         happy = true;}
      }
  }

@@ -6,7 +6,7 @@ public class WordSearch{
   private char[][]data;
    //the random seed used to produce this WordSearch
    private int seed;
-
+   public int seeder;
    //a random Object to unify your random calls
    private Random randgen;
 
@@ -85,7 +85,9 @@ else{
        System.out.println(wordsToAdd);
      }
      catch (FileNotFoundException e){
-       System.out.println("File not found.");}
+       System.out.println("File not found.");
+       System.exit(1);}
+       seeder = seed;
      randgen = new Random (seed);
      data = new char [r] [c];
      clear ();
@@ -99,7 +101,8 @@ else{
        System.out.println(wordsToAdd);
      }
      catch (FileNotFoundException e){
-       System.out.println("File not found.");}
+       System.out.println("File not found.");
+     System.exit(1);}
      Random sg = new Random ();
      seed = sg.nextInt();
      randgen = new Random (seed);
@@ -146,7 +149,7 @@ else{
         }
         sad = sad + "\n";
     }
-    sad = sad + "Words: ";
+    sad = sad + "Words: (Seed:" + seeder + ")";
     return sad;
   }
 
@@ -186,25 +189,28 @@ int tu = c;
 //Was helped by Moududur Rahman but that happened before I knew about the academic dishonesty policy for this class.
 //I tried writing my own, but everytime it is just another version of this. I undertood the code so my brain can't think of any other way.
 // I did a few changes but they were minor...so I hope this is okay.
-private boolean addAllWords() {
-  while (wordsToAdd.size() > 0) {
-    int idx = Math.abs(randgen.nextInt() % wordsToAdd.size());
-    boolean finished = false;
-    for (int x = 0; x < 500 && ! finished; x ++) {
-      int rows = Math.abs(randgen.nextInt() % data.length);
-      int cols = Math.abs(randgen.nextInt() % data[0].length);
-      int rowIncrement = randgen.nextInt() % 2;
-      int colIncrement = randgen.nextInt() % 2;
-      if (addWord(wordsToAdd.get(idx), rows, cols, rowIncrement, colIncrement)) {
-        finished = true;
-        wordsAdded.add(wordsToAdd.get(idx));
-      }
-    }
-    wordsToAdd.remove(idx);
-  }
-  return true;
-}
-
+private void addAllWords() {
+   int xc;
+   int yc;
+   int rv;
+   int cv;
+   int add = 0;
+     for (int i = 0; i < wordsToAdd.size(); i++){
+       int tries = 100;
+       boolean happy = false;
+       String list = wordsToAdd.get(i);
+       while (happy == false && tries > 0){
+         xc = Math.abs(randgen.nextInt() % data.length);
+         yc = Math.abs(randgen.nextInt() % data[0].length);
+         rv = (randgen.nextInt() % 2);
+         cv = (randgen.nextInt() % 2);
+         if (!addWord(wordsToAdd.get(i), xc, yc, rv, cv)){
+         tries --;
+       }
+       else{ addWord(wordsToAdd.get(i),xc, yc, rv, cv);}
+     }
+ }
+ }
 private void nokey(){
   for (int x = 0; x < data.length; x ++) {
   for (int y = 0; y < data[0].length; y ++) {

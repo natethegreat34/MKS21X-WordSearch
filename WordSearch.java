@@ -25,7 +25,7 @@ public class WordSearch{
      boolean k = false;
      String error1 = "File not found";
      String error2 = "Might be missing or have an additional argument. Make sure it looks like \n java WordSearch row col fileName *optional* (seed answer) \n examples: \n java WordSearch 40 40 word.txt \n or \n java WordSearch 40 40 word.txt 123 \n or \n java WordSearch 40 40 word.txt 123 key";
-     String error3 = "Seed is too big. Has to be between 0 and 10000 inclusive.";
+     String error3 = "Seed is too big or too small or completely wrong. Has to be between an integer 0 and 10000 inclusive.";
      boolean dongoofed = false;
       if (alength < 3){System.out.println(error2);
       dongoofed = true;}
@@ -49,10 +49,10 @@ else{
           sprout = Integer.parseInt(args[3]);
         }
         catch (NumberFormatException e){
-          System.out.println(error2);
+          System.out.println(error3);
         dongoofed = true;}
           k = false;
-          if (sprout < 0 || sprout > 10000){System.out.println(error3);
+          if (Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3]) > 10000){System.out.println(error3);
           dongoofed = true;}
             if (!dongoofed){
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
@@ -62,7 +62,7 @@ else{
       if (alength == 5){
         if (args[4].equals("key")){
           k = true;
-          if (sprout < 0 || sprout > 10000){System.out.println(error3);
+          if ( Integer.parseInt(args[3]) < 0 || Integer.parseInt(args[3])> 10000){System.out.println(error3);
           dongoofed = true;}
             if (!dongoofed){
           WordSearch pal = new WordSearch (ro, co, file, sprout, k);
